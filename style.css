@@ -22,3 +22,5 @@ div.cell {
 	width: calc(var(--cell-w);
 	aspect-ratio: 1;
 }
+
+/*div.cell.topBorder*/
