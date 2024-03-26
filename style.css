@@ -1,0 +1,24 @@
+div.grid {
+	--cell-w: 50px;
+	--grid-w: 5;
+	--border-w: 2px;
+
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+
+	display: grid;
+	grid-template-rows: repeat(var(--grid-w), var(--cell-w));
+	grid-template-columns: repeat(var(--grid-w), var(--cell-w));
+	width: calc( var(--cell-w) * var(--grid-w) );
+	aspect-ratio: 1;
+
+	border: solid calc(var(--border-w) * 2);
+}
+
+div.cell {
+	background-color: #eee;
+	border: solid var(--border-w) #ddd;
+	width: calc(var(--cell-w);
+	aspect-ratio: 1;
+}

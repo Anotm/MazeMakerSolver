@@ -17,6 +17,7 @@ class Cell {
 		}
 		console.log(this.adjacent);
 		this.connected = [];
+		this.mapWidth = mapWidth;
 	}
 
 	getRandAdjacecnt() {
@@ -49,6 +50,17 @@ class Cell {
 	}
 }
 
-const test = new Cell(1,1,5);
-test.connect([1,2]);
-test.connect([1,5]);
+function makeGrid(gridWidth, cellWidth) {
+	// x = column
+	// y = row
+	for (var i = 0; i < gridWidth*gridWidth; i++) {
+		$("div.grid").append('<div class="cell" id="x' + i%gridWidth + 'y' + Math.floor(i/gridWidth) + '"></div>');
+	}
+	$("div.grid").css({"--grid-w":gridWidth, "--cell-w":cellWidth});
+}
+
+// const test = new Cell(1,1,5);
+// test.connect([1,2]);
+// test.connect([1,5]);
+
+makeGrid(5,"50px");
