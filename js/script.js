@@ -43,14 +43,14 @@ class Cell {
 		return false;
 	}
 
+	isSet() {
+		return this.set;
+	}
+
 	connect(x,y) {
 		if (isAjacent(x,y) && !isConnected(x,y)) {
 			this.connected.push([x,y]);
 		}
-	}
-
-	isSet(){
-		return this.set;
 	}
 
 	drawBorders() {
@@ -81,9 +81,8 @@ function makeGrid(gridWidth, cellWidth, borderWidth) {
 }
 
 
+const gridWidth = 5;
+const cellWidth = 50;
+const borderWidth = 2;
 
-// const test = new Cell(1,1,5);
-// test.connect([1,2]);
-// test.connect([1,5]);
-
-makeGrid(5,50,2);
+makeGrid(gridWidth, cellWidth, borderWidth);

@@ -23,4 +23,18 @@ div.cell {
 	aspect-ratio: 1;
 }
 
-/*div.cell.topBorder*/
+div.cell.topBorder {
+	border-top-color: black;
+}
+
+div.cell.rightBorder {
+	border-right-color: black;
+}
+
+div.cell.bottomBorder {
+	border-bottom-color: black;
+}
+
+div.cell.leftBorder {
+	border-left-color: black;
+}
