@@ -38,3 +38,7 @@ div.cell.bottomBorder {
 div.cell.leftBorder {
 	border-left-color: black;
 }
+
+div.cell.active {
+	background-color: #fff;
+}
