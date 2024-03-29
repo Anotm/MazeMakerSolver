@@ -10,16 +10,16 @@ div.grid {
 	display: grid;
 	grid-template-rows: repeat(var(--grid-w), var(--cell-w));
 	grid-template-columns: repeat(var(--grid-w), var(--cell-w));
-	width: calc( var(--cell-w) * var(--grid-w) );
-	aspect-ratio: 1;
 
-	border: solid calc(var(--border-w) * 2);
+/* 	border: solid calc(var(--border-w) * 2) #000; */
+	width: fit-content;
+	aspect-ratio: 1;
 }
 
 div.cell {
 	background-color: #eee;
 	border: solid var(--border-w) #ddd;
-	width: calc(var(--cell-w);
+	width: calc(var(--cell-w));
 	aspect-ratio: 1;
 }
 

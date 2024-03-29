@@ -15,7 +15,7 @@ class Cell {
 		if (y+1 < mapWidth) {
 			this.adjacent.push([x,y+1]);
 		}
-		console.log(this.adjacent);
+		// console.log(this.adjacent);
 		this.connected = [];
 		this.mapWidth = mapWidth;
 		this.set = false;
@@ -23,6 +23,10 @@ class Cell {
 
 	getRandAdjacecnt() {
 		return this.adjacent[Math.floor(Math.random()*this.adjacent.length)];
+	}
+
+	getCoordinates() {
+		return [this.x, this.y];
 	}
 
 	isAjacent(x,y) {
@@ -48,21 +52,27 @@ class Cell {
 	}
 
 	connect(x,y) {
-		if (isAjacent(x,y) && !isConnected(x,y)) {
+		if (this.isAjacent(x,y) && !this.isConnected(x,y)) {
 			this.connected.push([x,y]);
-		}
-	}
-
-	drawBorders() {
-		for (var i = 0; i < this.adjacent.length; i++) {
-			cellX = this.adjacent[i][0];
-			cellY = this.adjacent[i][1];
-			
-			if(!isConnected(cellX,cellY)) { 
-				return true;
+			// TODO: add the cnnected to the other list
+			var classA = "";
+			var classB = "";
+			if(this.x < x) {
+				classA = "rightBorder";
+				classB = "leftBorder";
+			} else if (x < this.x) {
+				classA = "leftBorder";
+				classB = "rightBorder";
+			} else if(this.y < y) {
+				classA = "topBorder";
+				classB = "bottomBorder";
+			} else if (y < this.y) {
+				classA = "bottomBorder";
+				classB = "topBorder";
 			}
+			$("div.cell#x" + this.x + "y" + this.y).removeClass(classA);
+			$("div.cell#x" + x + "y" + y).removeClass(classB);
 		}
-		return false;
 	}
 }
 
@@ -73,11 +83,21 @@ function setDimentiosn(gridWidth, cellWidth, borderWidth) {
 function makeGrid(gridWidth, cellWidth, borderWidth) {
 	// x = column
 	// y = row
+	var gridList = [];
 	$("div.grid").empty();
 	for (var i = 0; i < gridWidth*gridWidth; i++) {
-		$("div.grid").append('<div class="cell" id="x' + i%gridWidth + 'y' + Math.floor(i/gridWidth) + '"></div>');
+		const x = i%gridWidth;
+		const y = Math.floor(i/gridWidth);
+		// $("div.grid").append('<div class="cell" id="x' + x + 'y' + y + '"></div>');
+		$("div.grid").append('<div class="cell rightBorder leftBorder topBorder bottomBorder" id="x' + x + 'y' + y + '"></div>');
+		gridList.push(new Cell(x,y,gridWidth));
 	}
 	setDimentiosn(gridWidth, cellWidth, borderWidth);
+	return gridList;
+}
+
+function index(x,y,gridWidth) {
+	return (y*gridWidth) + x;
 }
 
 
@@ -85,4 +105,5 @@ const gridWidth = 5;
 const cellWidth = 50;
 const borderWidth = 2;
 
-makeGrid(gridWidth, cellWidth, borderWidth);
+gridList = makeGrid(gridWidth, cellWidth, borderWidth);
+gridList[index(0,0,gridWidth)].connect(1,0)
