@@ -197,7 +197,7 @@ var Search = function (context) {
 	// }
 
 	this.go = function () {
-		console.log("--SEARCH");
+		// console.log("--SEARCH");
 		var hit = false;
 
 		for (this.currentIndex; this.currentIndex < this.gW ** 2; this.currentIndex++) {
@@ -236,14 +236,14 @@ var RandConnect = function (context) {
 
 	this.connectPoints = function (cell1,cell2) {
 		// console.log();
-		console.log("RandConnect: " + cell1.getCoordinates() + " " + cell2.getCoordinates());
+		// console.log("RandConnect: " + cell1.getCoordinates() + " " + cell2.getCoordinates());
 
 		this.gL[this.index(cell1)].connect(cell2);
 		this.gL[this.index(cell2)].connect(cell1);
 	}
 
 	this.go = async function () {
-		console.log("--RANDCONNECT");
+		// console.log("--RANDCONNECT");
 		var cell = this.gL[this.currentIndex];
 		var cellAdj = cell.getRandAdjacent();
 		while (cellAdj != null) {
@@ -252,7 +252,7 @@ var RandConnect = function (context) {
 			cell = cellAdj;
 			cellAdj = cell.getRandAdjacent();
 
-			await this.sleep(100);
+			await this.sleep(10);
 		}
 		context.change(new Search(context));
 	}
