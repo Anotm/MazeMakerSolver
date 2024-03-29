@@ -18,7 +18,7 @@ div.grid {
 
 div.cell {
 	background-color: #eee;
-	border: solid var(--border-w) #ddd;
+	border: solid var(--border-w) #fefefe;
 	width: calc(var(--cell-w));
 	aspect-ratio: 1;
 }
