@@ -12,3 +12,5 @@ Input the following parameters and then click generate to make your maze. <br />
 When maze has generated, you can click on the cell to highlight it blue. Using this you can try and solve it!<br />
 <br />
 There is a bug (explained on the page) but it looks kinda cool so i didnt fix it.<br />
+<br />
+The next step from here is to work on algorithms that solve the maze.
