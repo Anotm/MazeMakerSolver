@@ -6,9 +6,34 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 </head>
 <body>
+	<div class="inputs">
+		<div class="delay">
+			<div>Delay (ms):</div>
+			<input type="number" value="500" min="0" max="2000" step="100" />
+		</div>
+		<div class="gridWidth">
+			<div>Grid Width:</div>
+			<input type="number" value="20" min="5" max="100" step="5" />
+		</div>
+		<div class="cellWidth">
+			<div>Cell Width (px):</div>
+			<input type="number" value="5" min="10" max="50" step="1" />
+		</div>
+
+		<div class="borderWidth">
+			<div>Border Width (px):</div>
+			<input type="number" value="2" min="1" max="5" step="1" />
+		</div>
+
+		 <button type="button" onclick="run()">Generate</button> 
+	</div>
+
 	<div class="grid">
 	</div>
-	
+	<br>
+	<p class="note">NOTE: Click square to toggle highlighting. Try and solve the maze.</p>
+	<p class="note">NOTE: Generating a new maze while old one is not done generating will cause visual bug. TRY IT OUT!! Set the delay to something other than 0 and click "Generate" multiple times. It looks kinda cool!!!</p>
+	<p class="note">-- To prevent the bug, reload the page before making a new maze if current maze is not done generating.</p>
 	<script language="JavaScript" type="text/javascript" src="./js/jquery.js"></script>
 	<script language="JavaScript" type="text/javascript" src="./js/script.js"></script>
 	<script language="JavaScript" type="module" src="./js/cell.js"></script>

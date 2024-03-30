@@ -21,6 +21,7 @@ div.cell {
 	border: solid var(--border-w) #f0f0f0;
 	width: calc(var(--cell-w));
 	aspect-ratio: 1;
+	cursor: pointer;
 }
 
 div.cell.topBorder {
@@ -41,4 +42,23 @@ div.cell.leftBorder {
 
 div.cell.active {
 	background-color: #fff;
+}
+
+div.inputs {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 2rem;
+}
+
+p.note {
+	position: relative;
+	width: 70%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+div.cell.selected {
+	background-color: #aaf !important;
 }
