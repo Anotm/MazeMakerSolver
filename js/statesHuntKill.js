@@ -1,8 +1,4 @@
-var StateMachineHuntKill = function (delay, gridWidth, cellWidth, borderWidth) {
-	this.delay = delay;
-	this.gW = gridWidth;
-	this.cW = cellWidth;
-	this.bW = borderWidth;
+var StateMachineHuntKill = function () {
 	this.gL = [];
 	this.currentIndex;
 	this.currentState;
@@ -27,29 +23,29 @@ var StateMachineHuntKill = function (delay, gridWidth, cellWidth, borderWidth) {
 		return this.delay;
 	}
 
-	this.setDimentions = function() {
-		$("div.grid").css({"--grid-w":this.gW, "--cell-w":this.cW+"px", "--border-w":this.bW+"px"});
-	}
+	// this.setDimentions = function() {
+	// 	$("div.grid").css({"--grid-w":this.gW, "--cell-w":this.cW+"px", "--border-w":this.bW+"px"});
+	// }
 
-	this.makeGrid = function() {
-		// x = column
-		// y = row
-		var gridList = [];
-		$("div.grid").empty();
-		for (var i = 0; i < this.gW ** 2; i++) {
-			const x = i%this.gW;
-			const y = Math.floor(i/this.gW);
-			// $("div.grid").append('<div class="cell" id="x' + x + 'y' + y + '"></div>');
-			$("div.grid").append('<div class="cell rightBorder leftBorder topBorder bottomBorder" id="x' + x + 'y' + y + '" onclick="select(this.id)"></div>');
-			gridList.push(new Cell(x,y,this.gW));
-		}
-		for (var i = 0; i < this.gW ** 2; i++) {
-			// console.log(i);
-			gridList[i].setAdjacent(gridList);
-		}
-		gridList[0].setActive(true);
-		return gridList;
-	}
+	// this.makeGrid = function() {
+	// 	// x = column
+	// 	// y = row
+	// 	var gridList = [];
+	// 	$("div.grid").empty();
+	// 	for (var i = 0; i < this.gW ** 2; i++) {
+	// 		const x = i%this.gW;
+	// 		const y = Math.floor(i/this.gW);
+	// 		// $("div.grid").append('<div class="cell" id="x' + x + 'y' + y + '"></div>');
+	// 		$("div.grid").append('<div class="cell rightBorder leftBorder topBorder bottomBorder" id="x' + x + 'y' + y + '" onclick="select(this.id)"></div>');
+	// 		gridList.push(new Cell(x,y,this.gW));
+	// 	}
+	// 	for (var i = 0; i < this.gW ** 2; i++) {
+	// 		// console.log(i);
+	// 		gridList[i].setAdjacent(gridList);
+	// 	}
+	// 	gridList[0].setActive(true);
+	// 	return gridList;
+	// }
 
 	this.change = function (state) {
 		this.currentState = state;
@@ -58,8 +54,12 @@ var StateMachineHuntKill = function (delay, gridWidth, cellWidth, borderWidth) {
 
 	this.start = function () {
 		this.currentIndex = 0;
-		this.gL = this.makeGrid();
-		this.setDimentions();
+		this.gW = $("div.gridWidth > input").val();
+		this.cW = $("div.cellWidth > input").val();
+		this.bW = $("div.borderWidth > input").val();
+		this.delay = $("div.delay > input").val();
+		this.gL = makeGrid();
+		setDimentions();
 
 		const max = this.gW-1;
 		$("div.cell#x0y0").removeClass("topBorder");
@@ -143,11 +143,7 @@ var RandConnect = function (context) {
 }
 
 function runHuntKill() {
-	const delay = $("div.delay > input").val();
-	const gridWidth = $("div.gridWidth > input").val();
-	const cellWidth = $("div.cellWidth > input").val();
-	const borderWidth = $("div.borderWidth > input").val();
-	var state = new StateMachineHuntKill(delay, gridWidth, cellWidth, borderWidth);
+	var state = new StateMachineHuntKill();
 	state.start();
 }
 

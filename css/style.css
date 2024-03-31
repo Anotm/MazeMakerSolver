@@ -44,6 +44,10 @@ div.cell.active {
 	background-color: #fff;
 }
 
+div.cell.selected {
+	background-color: #aaf !important;
+}
+
 div.inputs {
 	display: flex;
 	flex-direction: row;
@@ -59,6 +63,9 @@ p.note {
 	transform: translateX(-50%);
 }
 
-div.cell.selected {
-	background-color: #aaf !important;
+ul {
+	position: relative;
+	width: 55%;
+	left: 50%;
+	transform: translateX(-50%);
 }
