@@ -1,4 +1,4 @@
-var StateMachine = function (delay, gridWidth, cellWidth, borderWidth) {
+var StateMachineHuntKill = function (delay, gridWidth, cellWidth, borderWidth) {
 	this.delay = delay;
 	this.gW = gridWidth;
 	this.cW = cellWidth;
@@ -142,12 +142,12 @@ var RandConnect = function (context) {
 	}
 }
 
-function run() {
+function runHuntKill() {
 	const delay = $("div.delay > input").val();
 	const gridWidth = $("div.gridWidth > input").val();
 	const cellWidth = $("div.cellWidth > input").val();
 	const borderWidth = $("div.borderWidth > input").val();
-	var state = new StateMachine(delay, gridWidth, cellWidth, borderWidth);
+	var state = new StateMachineHuntKill(delay, gridWidth, cellWidth, borderWidth);
 	state.start();
 }
 
