@@ -14,6 +14,7 @@
 		<li><b>Cell Width:</b> How big each cell will be in pixels.</li>
 		<li><b>Border Width:</b> How thick the walls will be.</li>
 	</ul>
+	<p style="text-align: center;">There are 2 types maze generations used here. There are soon to be added more. The refrence I used to learn each algorithm is located <a href="https://www.youtube.com/watch?v=sVcB8vUFlmU">here</a>.</p>
 
 	<div class="inputs">
 		<div class="delay">
@@ -31,10 +32,12 @@
 
 		<div class="borderWidth">
 			<div>Border Width (px):</div>
-			<input type="number" value="2" min="1" max="5" step="1" />
+			<input type="number" value="1" min="1" max="5" step="1" />
 		</div>
-
-		 <button type="button" onclick="runHuntKill()">Generate</button> 
+	</div>
+	<div class="generate">
+		<button type="button" onclick="runHuntKill()">Generate (Hunt & Kill)</button> 
+		 <button type="button" onclick="runDepthFirst()">Generate (Depth First)</button> 
 	</div>
 
 	<div class="grid">
@@ -46,6 +49,7 @@
 	<p class="note">-- To prevent the bug, reload the page before making a new maze if current maze is not done generating.</p>
 	<script language="JavaScript" type="text/javascript" src="./js/jquery.js"></script>
 	<script language="JavaScript" type="text/javascript" src="./js/statesHuntKill.js"></script>
+	<script language="JavaScript" type="text/javascript" src="./js/statesDepthFirst.js"></script>
 	<script language="JavaScript" type="text/javascript" src="./js/cell.js"></script>
 </body>
 </html>

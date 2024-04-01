@@ -1,14 +1,17 @@
-var StateMachineHuntKill = function () {
+var StateMachineDepthFirst = function () {
 	this.gL = [];
-	this.currentIndex;
-	this.currentState;
+	this.cellQueue = [];
 
-	this.setCurrentIndex = function(i) {
-		this.currentIndex = i;
+	this.push = function(cell) {
+		this.cellQueue.push(cell);
 	}
 
-	this.getCurrentIndex = function() {
-		return this.currentIndex;
+	this.pop = function() {
+		return this.cellQueue.pop();
+	}
+
+	this.peek = function() {
+		return this.cellQueue[this.cellQueue.length-1];
 	}
 
 	this.getGW = function() {
@@ -29,7 +32,6 @@ var StateMachineHuntKill = function () {
 	};
 
 	this.start = function () {
-		this.currentIndex = 0;
 		this.gW = $("div.gridWidth > input").val();
 		this.cW = $("div.cellWidth > input").val();
 		this.bW = $("div.borderWidth > input").val();
@@ -37,51 +39,21 @@ var StateMachineHuntKill = function () {
 		this.gL = makeGrid();
 		setDimentions();
 
+		this.push(this.gL[0]);
+
 		const max = this.gW-1;
 		$("div.cell#x0y0").removeClass("topBorder");
 		$("div.cell#x" + max + "y" + max).removeClass("bottomBorder");
 
-		this.currentState = new SearchHK(this)
+		this.currentState = new RandConnectDF(this)
 		this.currentState.go();
 	}
 }
 
-var SearchHK = function (context) {
-	this.context = context;
-	this.gW = this.context.getGW();
-	this.gL = this.context.getGL();
-	this.currentIndex = this.context.getCurrentIndex();
-
-	// this.hasNonActive = function (x,y) {
-	// 	cell = this.gL[context];
-	// }
-
-	this.go = function () {
-		// console.log("--SEARCH");
-		var hit = false;
-
-		for (this.currentIndex; this.currentIndex < this.gW ** 2; this.currentIndex++) {
-			const cell = this.gL[this.currentIndex];
-			if (cell.isActive() && (cell.getRandAdjacent() != null)) {
-				hit = true;
-				context.setCurrentIndex(this.currentIndex);
-				break;
-			}
-		}
-
-		if (hit) {
-			context.change(new RandConnectHK(context));
-		} else {
-			// console.log("Search: All cells populated");
-		}
-	}
-}
-
-var RandConnectHK = function (context) {
+var RandConnectDF = function (context) {
 	this.context = context;
 	this.gL = this.context.getGL();
 	this.gW = this.context.getGW();
-	this.currentIndex = this.context.getCurrentIndex();
 
 	this.sleep = function () {
 	    return new Promise(resolve => setTimeout(resolve, this.context.getDelay()));
@@ -104,21 +76,52 @@ var RandConnectHK = function (context) {
 
 	this.go = async function () {
 		// console.log("--RANDCONNECT");
-		var cell = this.gL[this.currentIndex];
+		var cell = this.context.peek();
 		var cellAdj = cell.getRandAdjacent();
+
 		while (cellAdj != null) {
 
 			this.connectPoints(cell,cellAdj);
 			cell = cellAdj;
 			cellAdj = cell.getRandAdjacent();
+			this.context.push(cell);
 
 			if (this.context.getDelay() != 0) { await this.sleep(); }
 		}
-		context.change(new SearchHK(context));
+		context.change(new BackTrackDF(context));
 	}
 }
 
-function runHuntKill() {
-	var state = new StateMachineHuntKill();
+var BackTrackDF = function (context) {
+	this.context = context;
+	this.gW = this.context.getGW();
+	this.gL = this.context.getGL();
+
+	this.go = function () {
+		// console.log("--SEARCH");
+		var hit = true;
+		var cell = this.context.peek();
+
+		while (cell.getRandAdjacent() == null) {
+			// console.log(cell.getCoordinates());
+			// console.log("--" + cell.getRandAdjacent());
+			if (cell.getCoordinates()[0] == 0 && cell.getCoordinates()[1] == 0) {
+				hit = false;
+				break;
+			}
+			var dumpCell = this.context.pop();
+			cell = this.context.peek();
+		}
+
+		if (hit) {
+			context.change(new RandConnectDF(context));
+		} else {
+			console.log("Search: All cells populated");
+		}
+	}
+}
+
+function runDepthFirst() {
+	var state = new StateMachineDepthFirst();
 	state.start();
 }

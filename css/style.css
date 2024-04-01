@@ -49,11 +49,25 @@ div.cell.selected {
 }
 
 div.inputs {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	gap: 10px;
-	margin-bottom: 2rem;
+}
+
+div.generate {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0.5rem 0 2rem 0;
+}
+
+div.generate > button {
+	max-width: 100px;
 }
 
 p.note {

@@ -143,3 +143,8 @@ function makeGrid() {
 	gridList[0].setActive(true);
 	return gridList;
 }
+
+function select(id) {
+	// console.log(id);
+	$("div#" + id).toggleClass("selected");
+}
