@@ -83,3 +83,9 @@ ul {
 	left: 50%;
 	transform: translateX(-50%);
 }
+
+div.lineSep {
+	width: 100%;
+	border: solid 2px black;
+	margin: 2rem 0;
+}
