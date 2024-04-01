@@ -73,6 +73,7 @@ var SearchHK = function (context) {
 			context.change(new RandConnectHK(context));
 		} else {
 			// console.log("Search: All cells populated");
+			setGridList(this.gL);
 			enableSolveButtons();
 		}
 	}

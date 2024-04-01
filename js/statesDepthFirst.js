@@ -117,6 +117,7 @@ var BackTrackDF = function (context) {
 			context.change(new RandConnectDF(context));
 		} else {
 			// console.log("Search: All cells populated");
+			setGridList(this.gL);
 			enableSolveButtons();
 		}
 	}

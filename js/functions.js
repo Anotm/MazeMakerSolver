@@ -1,3 +1,9 @@
+gridList = [];
+function setGridList(list) {
+	gridList = list;
+	// console.log(gridList);
+}
+
 function setDimentions() {
 	const gW = $("div.gridWidth > input").val();
 	const cW = $("div.cellWidth > input").val();
