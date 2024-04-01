@@ -1,7 +1,7 @@
 div.grid {
-	--cell-w: 50px;
+	--cell-w: 1px;
 	--grid-w: 5;
-	--border-w: 2px;
+	--border-w: 1px;
 
 	position: relative;
 	left: 50%;
@@ -59,14 +59,14 @@ div.inputs {
 	gap: 10px;
 }
 
-div.generate {
+div.buttons {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin: 0.5rem 0 2rem 0;
+	margin: 0.5rem 0;
 }
 
-div.generate > button {
+div.buttons > button {
 	max-width: 100px;
 }
 

@@ -73,6 +73,7 @@ var SearchHK = function (context) {
 			context.change(new RandConnectHK(context));
 		} else {
 			// console.log("Search: All cells populated");
+			enableSolveButtons();
 		}
 	}
 }
@@ -119,6 +120,7 @@ var RandConnectHK = function (context) {
 }
 
 function runHuntKill() {
+	disableSolveButtons();
 	var state = new StateMachineHuntKill();
 	state.start();
 }

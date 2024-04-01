@@ -116,12 +116,14 @@ var BackTrackDF = function (context) {
 		if (hit) {
 			context.change(new RandConnectDF(context));
 		} else {
-			console.log("Search: All cells populated");
+			// console.log("Search: All cells populated");
+			enableSolveButtons();
 		}
 	}
 }
 
 function runDepthFirst() {
+	disableSolveButtons();
 	var state = new StateMachineDepthFirst();
 	state.start();
 }
