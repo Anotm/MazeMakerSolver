@@ -13,4 +13,7 @@ When maze has generated, you can click on the cell to highlight it blue. Using t
 <br />
 There is a bug (explained on the page) but it looks kinda cool so i didnt fix it.<br />
 <br />
-The next step from here is to work on algorithms that solve the maze.
+The next step from here is to work on algorithms that solve the maze.<br />
+<br />
+<br />
+For now i dont have a website/location where I can display the project. You can download it and open the file named "index.html". You will also see a "run.bat" file; I used this to create a "localhost" and run the project through there. This only works if you have windows, python 3 installed and set to be alias of python, and SimmplHTTP installed. (I'd just recommend you open the "index.html"...it'll be easier)

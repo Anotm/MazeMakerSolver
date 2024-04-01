@@ -37,6 +37,12 @@ function select(id) {
 	$("div#" + id).toggleClass("selected");
 }
 
+function selectCell(cell) {
+	// console.log(id);
+	id = "x" + cell.getCoordinates()[0] + "y" + cell.getCoordinates()[1];
+	$("div#" + id).toggleClass("selected");
+}
+
 function enableSolveButtons() {
 	$("button.solve").each(function (){
 		$(this).prop('disabled', false);
