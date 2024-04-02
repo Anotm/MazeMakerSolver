@@ -1,4 +1,9 @@
 gridList = [];
+
+// $("div.genBtns").load(function(){
+// 	disableSolveButtons();
+// });
+
 function setGridList(list) {
 	gridList = list;
 	// console.log(gridList);
