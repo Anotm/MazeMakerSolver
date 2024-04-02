@@ -12,6 +12,11 @@ function isExit(cell) {
 	return (this.cellCoor[0] == this.exitCellCoor[0] && this.cellCoor[1] == this.exitCellCoor[1]);
 }
 
+function isEntrance(cell) {
+	this.cellCoor = cell.getCoordinates();
+	return (this.cellCoor[0] == 0 && this.cellCoor[1] == 0);
+}
+
 function canMove(cell, dir, rightTurn) {
 	this.coor = cell.getCoordinates();
 	if (rightTurn) {
@@ -31,13 +36,14 @@ function canMove(cell, dir, rightTurn) {
 }
 
 async function solveRightHand() {
+	disableGenButtons();
 	disableSolveButtons();
 	removeHihglight();
+
 	const delay = $("div.delay > input").val();
 	var dir = [0,1];
 	var cell = gridList[0];
 	selectCell(cell);
-	console.log(canMove(gridList[1], [1,0], false));
 	while (!isExit(cell)) {
 		var rightCell = canMove(cell, dir, true);
 		var frontCell = canMove(cell, dir, false);
@@ -53,5 +59,61 @@ async function solveRightHand() {
 		}
 		if (delay != 0) { await sleep(delay); }
 	}
+
+	enableGenButtons();
+	enableSolveButtons();
+}
+
+async function solveRightHandImproved() {
+	disableGenButtons();
+	disableSolveButtons();
+	removeHihglight();
+
+	const delay = $("div.delay > input").val();
+	var memory = [];
+	for (var i = 0; i < gridList.length; i++) {
+		memory.push(null);
+	}
+	var dir = [0,1];
+	var cell = gridList[0];
+	visitCell(cell);
+
+	while (!isExit(cell)) {
+		var rightCell = canMove(cell, dir, true);
+		var frontCell = canMove(cell, dir, false);
+		if (rightCell != null) {
+			const index = rightCell.getCoordinates()[1]*Math.sqrt(memory.length) + rightCell.getCoordinates()[0];
+			if (memory[index] == null) {
+				memory[ index ] = cell;
+			}
+			dir = CW(dir);
+			cell = rightCell;
+			visitCell(cell);
+		} else if (frontCell != null){
+			const index = frontCell.getCoordinates()[1]*Math.sqrt(memory.length) + frontCell.getCoordinates()[0];
+			if (memory[index] == null) {
+				memory[ index ] = cell;
+			}
+			cell = frontCell;
+			visitCell(cell);
+		} else {
+			dir = CCW(dir);
+		}
+		if (delay != 0) { await sleep(delay); }
+	}
+
+	while (!isEntrance(cell)) {
+		if (cell == null) {
+			console.log("broke");
+			return;
+		}
+		selectCell(cell);
+		cell = memory[ cell.getCoordinates()[1]*Math.sqrt(memory.length) + cell.getCoordinates()[0] ];
+		if (delay != 0) { await sleep(delay); }
+	}
+
+	selectCell(cell);
+
+	enableGenButtons();
 	enableSolveButtons();
 }

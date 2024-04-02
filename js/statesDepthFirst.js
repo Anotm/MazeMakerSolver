@@ -115,12 +115,14 @@ var BackTrackDF = function (context) {
 		} else {
 			// console.log("Search: All cells populated");
 			setGridList(this.gL);
+			enableGenButtons();
 			enableSolveButtons();
 		}
 	}
 }
 
 function runDepthFirst() {
+	disableGenButtons();
 	disableSolveButtons();
 	var state = new StateMachineDepthFirst();
 	state.start();

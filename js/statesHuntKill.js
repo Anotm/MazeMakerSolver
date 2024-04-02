@@ -74,6 +74,7 @@ var SearchHK = function (context) {
 		} else {
 			// console.log("Search: All cells populated");
 			setGridList(this.gL);
+			enableGenButtons();
 			enableSolveButtons();
 		}
 	}
@@ -117,6 +118,7 @@ var RandConnectHK = function (context) {
 }
 
 function runHuntKill() {
+	disableGenButtons();
 	disableSolveButtons();
 	var state = new StateMachineHuntKill();
 	state.start();

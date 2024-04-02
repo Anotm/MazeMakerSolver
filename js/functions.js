@@ -74,3 +74,15 @@ function disableSolveButtons() {
 		$(this).prop('disabled', true);
 	});
 }
+
+function enableGenButtons() {
+	$("button.gen").each(function (){
+		$(this).prop('disabled', false);
+	});
+}
+
+function disableGenButtons() {
+	$("button.gen").each(function (){
+		$(this).prop('disabled', true);
+	});
+}
