@@ -4,9 +4,9 @@ class Cell {
 		this.y = y;
 		// console.log(this.adjacent);
 		this.connected = [];
-		this.mapWidth = mapWidth;
-		this.active = false;
 		this.adjacent = [];
+		this.active = false;
+		this.mapWidth = mapWidth;
 	}
 
 	setActive(b) {
@@ -62,6 +62,10 @@ class Cell {
 		return [this.x, this.y];
 	}
 
+	getConnected() {
+		return this.connected;
+	}
+
 	isAjacent(cell) {
 		cellCoordinates = cell.getCoordinates();
 		x = cellCoordinates[0];
@@ -76,11 +80,16 @@ class Cell {
 	}
 
 	isConnected(cell) {
-		cellCoordinates = cell.getCoordinates();
+		try {
+			cellCoordinates = cell.getCoordinates();
+		} catch (error) {
+			return false;
+		}
+		
 		x = cellCoordinates[0];
 		y = cellCoordinates[1];
 		for (var i = 0; i < this.connected.length; i++) {
-			if(this.connected[i].getCoordinates[0] == x && this.connected[i].getCoordinates[1] == y) { 
+			if(this.connected[i].getCoordinates()[0] === x && this.connected[i].getCoordinates()[1] === y) { 
 				return true;
 			}
 		}

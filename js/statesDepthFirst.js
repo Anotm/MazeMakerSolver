@@ -67,9 +67,6 @@ var RandConnectDF = function (context) {
 	}
 
 	this.connectPoints = function (cell1,cell2) {
-		// console.log();
-		// console.log("RandConnect: " + cell1.getCoordinates() + " " + cell2.getCoordinates());
-
 		this.gL[this.index(cell1)].connect(cell2);
 		this.gL[this.index(cell2)].connect(cell1);
 	}
@@ -86,7 +83,7 @@ var RandConnectDF = function (context) {
 			cellAdj = cell.getRandAdjacent();
 			this.context.push(cell);
 
-			if (this.context.getDelay() != 0) { await this.sleep(); }
+			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
 		}
 		context.change(new BackTrackDF(context));
 	}

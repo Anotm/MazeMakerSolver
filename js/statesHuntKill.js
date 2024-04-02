@@ -85,10 +85,6 @@ var RandConnectHK = function (context) {
 	this.gW = this.context.getGW();
 	this.currentIndex = this.context.getCurrentIndex();
 
-	this.sleep = function () {
-	    return new Promise(resolve => setTimeout(resolve, this.context.getDelay()));
-	}
-
 	this.index = function (cell) {
 		cellCoordinates = cell.getCoordinates();
 		x = cellCoordinates[0];
@@ -114,7 +110,7 @@ var RandConnectHK = function (context) {
 			cell = cellAdj;
 			cellAdj = cell.getRandAdjacent();
 
-			if (this.context.getDelay() != 0) { await this.sleep(); }
+			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
 		}
 		context.change(new SearchHK(context));
 	}

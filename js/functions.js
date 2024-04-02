@@ -32,6 +32,10 @@ function makeGrid() {
 	return gridList;
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function select(id) {
 	// console.log(id);
 	$("div#" + id).toggleClass("selected");
@@ -40,7 +44,23 @@ function select(id) {
 function selectCell(cell) {
 	// console.log(id);
 	id = "x" + cell.getCoordinates()[0] + "y" + cell.getCoordinates()[1];
-	$("div#" + id).toggleClass("selected");
+	$("div#" + id).addClass("selected");
+}
+
+function visitCell(cell) {
+	// console.log(id);
+	id = "x" + cell.getCoordinates()[0] + "y" + cell.getCoordinates()[1];
+	$("div#" + id).addClass("visited");
+}
+
+function removeHihglight() {
+	$("div.selected").each(function (){
+		$(this).removeClass("selected");
+	});
+
+	$("div.visited").each(function (){
+		$(this).removeClass("visited");
+	});
 }
 
 function enableSolveButtons() {

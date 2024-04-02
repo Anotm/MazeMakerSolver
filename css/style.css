@@ -44,8 +44,12 @@ div.cell.active {
 	background-color: #fff;
 }
 
+div.cell.visited {
+	background-color: #ffa;
+}
+
 div.cell.selected {
-	background-color: #aaf !important;
+	background-color: #99f;
 }
 
 div.inputs {
