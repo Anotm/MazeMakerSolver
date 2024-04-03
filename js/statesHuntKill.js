@@ -56,17 +56,22 @@ var SearchHK = function (context) {
 	// 	cell = this.gL[context];
 	// }
 
-	this.go = function () {
+	this.go = async function () {
 		// console.log("--SEARCH");
 		var hit = false;
 
 		for (this.currentIndex; this.currentIndex < this.gW ** 2; this.currentIndex++) {
 			const cell = this.gL[this.currentIndex];
+			
 			if (cell.isActive() && (cell.getRandAdjacent() != null)) {
 				hit = true;
 				context.setCurrentIndex(this.currentIndex);
 				break;
 			}
+
+			setCurrentCell(cell);
+			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
+			removeCurrentCell(cell);
 		}
 
 		if (hit) {
@@ -111,7 +116,9 @@ var RandConnectHK = function (context) {
 			cell = cellAdj;
 			cellAdj = cell.getRandAdjacent();
 
+			setCurrentCell(cell);
 			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
+			removeCurrentCell(cell);
 		}
 		context.change(new SearchHK(context));
 	}

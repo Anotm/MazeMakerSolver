@@ -77,12 +77,14 @@ var RandConnectDF = function (context) {
 		var cellAdj = cell.getRandAdjacent();
 
 		while (cellAdj != null) {
+			removeCurrentCell(cell);
 
 			this.connectPoints(cell,cellAdj);
 			cell = cellAdj;
 			cellAdj = cell.getRandAdjacent();
 			this.context.push(cell);
 
+			setCurrentCell(cell);
 			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
 		}
 		context.change(new BackTrackDF(context));
@@ -94,12 +96,13 @@ var BackTrackDF = function (context) {
 	this.gW = this.context.getGW();
 	this.gL = this.context.getGL();
 
-	this.go = function () {
+	this.go = async function () {
 		// console.log("--SEARCH");
 		var hit = true;
 		var cell = this.context.peek();
 
 		while (cell.getRandAdjacent() == null) {
+			removeCurrentCell(cell);
 			// console.log(cell.getCoordinates());
 			// console.log("--" + cell.getRandAdjacent());
 			if (cell.getCoordinates()[0] == 0 && cell.getCoordinates()[1] == 0) {
@@ -108,6 +111,9 @@ var BackTrackDF = function (context) {
 			}
 			var dumpCell = this.context.pop();
 			cell = this.context.peek();
+
+			setCurrentCell(cell);
+			if (this.context.getDelay() != 0) { await sleep(this.context.getDelay()); }
 		}
 
 		if (hit) {
