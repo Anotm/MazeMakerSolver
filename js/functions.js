@@ -58,6 +58,18 @@ function visitCell(cell) {
 	$("div#" + id).addClass("visited");
 }
 
+function setCurrentCell(cell) {
+	// console.log(id);
+	id = "x" + cell.getCoordinates()[0] + "y" + cell.getCoordinates()[1];
+	$("div#" + id).addClass("current");
+}
+
+function removeCurrentCell(cell) {
+	// console.log(id);
+	id = "x" + cell.getCoordinates()[0] + "y" + cell.getCoordinates()[1];
+	$("div#" + id).removeClass("current");
+}
+
 function removeHihglight() {
 	$("div.selected").each(function (){
 		$(this).removeClass("selected");
@@ -65,6 +77,10 @@ function removeHihglight() {
 
 	$("div.visited").each(function (){
 		$(this).removeClass("visited");
+	});
+
+	$("div.current").each(function (){
+		$(this).removeClass("current");
 	});
 }
 

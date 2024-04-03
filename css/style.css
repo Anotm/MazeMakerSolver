@@ -52,6 +52,10 @@ div.cell.selected {
 	background-color: #99f;
 }
 
+div.cell.current {
+	background-color: #faa;
+}
+
 div.inputs {
 	position: relative;
 	left: 50%;

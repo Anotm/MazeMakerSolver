@@ -44,16 +44,21 @@ async function solveRightHand() {
 	var dir = [0,1];
 	var cell = gridList[0];
 	selectCell(cell);
+
 	while (!isExit(cell)) {
 		var rightCell = canMove(cell, dir, true);
 		var frontCell = canMove(cell, dir, false);
 		if (rightCell != null) {
+			removeCurrentCell(cell);
 			dir = CW(dir);
 			cell = rightCell;
 			selectCell(cell);
+			setCurrentCell(cell);
 		} else if (frontCell != null){
+			removeCurrentCell(cell);
 			cell = frontCell;
 			selectCell(cell);
+			setCurrentCell(cell);
 		} else {
 			dir = CCW(dir);
 		}
@@ -77,11 +82,13 @@ async function solveRightHandImproved() {
 	var dir = [0,1];
 	var cell = gridList[0];
 	visitCell(cell);
+	setCurrentCell(cell);
 
 	while (!isExit(cell)) {
 		var rightCell = canMove(cell, dir, true);
 		var frontCell = canMove(cell, dir, false);
 		if (rightCell != null) {
+			removeCurrentCell(cell);
 			const index = rightCell.getCoordinates()[1]*Math.sqrt(memory.length) + rightCell.getCoordinates()[0];
 			if (memory[index] == null) {
 				memory[ index ] = cell;
@@ -89,13 +96,16 @@ async function solveRightHandImproved() {
 			dir = CW(dir);
 			cell = rightCell;
 			visitCell(cell);
+			setCurrentCell(cell);
 		} else if (frontCell != null){
+			removeCurrentCell(cell);
 			const index = frontCell.getCoordinates()[1]*Math.sqrt(memory.length) + frontCell.getCoordinates()[0];
 			if (memory[index] == null) {
 				memory[ index ] = cell;
 			}
 			cell = frontCell;
 			visitCell(cell);
+			setCurrentCell(cell);
 		} else {
 			dir = CCW(dir);
 		}
