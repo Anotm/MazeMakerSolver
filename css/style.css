@@ -1,3 +1,6 @@
+
+/* --------------------------Grid-------------------------- */
+
 div.grid {
 	--cell-w: 1px;
 	--grid-w: 5;
@@ -56,6 +59,9 @@ div.cell.current {
 	background-color: #faa;
 }
 
+
+/* --------------------------Grid Interface +Explanation-------------------------- */
+
 div.inputs {
 	position: relative;
 	left: 50%;
@@ -78,22 +84,49 @@ div.buttons > button {
 	max-width: 100px;
 }
 
-p.note {
+ul, 
+div.solveExplanation, 
+img.MV4,
+div.solveExplanation > div.mazeSplitting
+ {
 	position: relative;
-	width: 70%;
 	left: 50%;
 	transform: translateX(-50%);
 }
 
+
 ul {
-	position: relative;
 	width: 55%;
-	left: 50%;
-	transform: translateX(-50%);
 }
 
 div.lineSep {
 	width: 100%;
 	border: solid 2px black;
 	margin: 2rem 0;
+}
+
+div.solveExplanation {
+	width: 70%;
+}
+
+div.solveExplanation > div.mazeSplitting {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	width: 70%;
+}
+
+div.solveExplanation > div.mazeSplitting > p {
+	width: 70%;
+}
+
+div.solveExplanation > div.mazeSplitting > div.mazeImages {
+	width: 30%;
+}
+
+div.solveExplanation > div.mazeSplitting > div.mazeImages > img {
+	width: 100%;
+	height: auto;
 }
