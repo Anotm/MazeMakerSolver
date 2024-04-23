@@ -62,7 +62,7 @@
 
 	<div class="solveExplanation">
 		<h2>Right Hand Solve</h2>
-		<p>The Right Hand rule is names such because it simulates a person walking through the maze whilst holding their hand on the wall, to their right, and following the wall to complete the maze.</p>
+		<p>The Right-Hand rule is names such because it simulates a person walking through the maze whilst holding their hand on the wall, to their right, and following the wall to complete the maze.</p>
 		<div class="mazeSplitting">
 			<p>This is possible because a square maze, with an entrance and exit on the outer walls, can be divided into two parts/walls/sections. As a result, solving the maze is no longer a matter of finding the correct path, but rather a matter of following the length of one of these two parts/walls/sections. Note that using the left wall will also yield the same result, it is a matter of preference.</p>
 			<div class="mazeImages">
@@ -72,6 +72,12 @@
 		</div>
 		<br>
 		<img class="MV4" src="images/MazeVisual4.png" alt="">
+		<br>
+		<p>The Right-Hand rule does not solve the maze in the most efficient way. The original alrgorithm solves the maze without taking into account that it is back tracking or going into a daead end.</p>
+		<img class="SE1" src="images/SolveExample1.png" alt="">
+		<br>
+		<p>This problem is addressed in the improved version of the algorithm. There, the maze is first solved in the same way as before but it remembers which cell was the cell before. This could be visualized by imagening each cell is pointing to the cell from which the solver came from. If the algorithm goes to a cell that already is pointing to another cell, then the program does not overide the "pointer". Once the maze is solved using the old algorithm, it begins to backtrack its steps; following the pointers. Because we rememberd "where the solver has come from", and we didnt overide the "pointers", backtracking will yeild the shortest path to the start.</p>
+		<img class="SE2" src="images/SolveExample2.png" alt="">
 	</div>
 
 	<script language="JavaScript" type="text/javascript" src="./js/jquery.js"></script>

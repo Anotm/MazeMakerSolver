@@ -87,6 +87,8 @@ div.buttons > button {
 ul, 
 div.solveExplanation, 
 img.MV4,
+img.SE1,
+img.SE2,
 div.solveExplanation > div.mazeSplitting
  {
 	position: relative;
@@ -129,4 +131,9 @@ div.solveExplanation > div.mazeSplitting > div.mazeImages {
 div.solveExplanation > div.mazeSplitting > div.mazeImages > img {
 	width: 100%;
 	height: auto;
+}
+
+img.SE1,
+img.SE2 {
+	width: 80%;
 }
